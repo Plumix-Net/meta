@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "landing-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "landing", "run", "dev"],
+      "port": 8080
+    },
+    {
+      "name": "landing-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "landing", "run", "preview", "--", "--port", "4173"],
+      "port": 4173
+    },
+    {
+      "name": "landing-dist",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["landing/scripts/serve-dist.mjs"],
+      "port": 4174
+    }
+  ]
+}

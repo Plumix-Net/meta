@@ -1,0 +1,18 @@
+# Ignore nested project repositories
+/Plumix/
+/Plumix.Packages/
+/NetBench/
+/landing/
+/Avalonia/
+/.github/
+
+# OS artifacts
+.DS_Store
+
+# JetBrains Rider
+*.sln.iml
+.idea/
+.vs/
+
+# Binary doc assets (screens, mockups)
+/docs/assets/
