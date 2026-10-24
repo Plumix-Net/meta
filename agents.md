@@ -13,7 +13,7 @@ all under `github.com/Plumix-Net` unless noted):
   layer in C# on .NET 10, Avalonia as platform host. NuGet `Plumix`,
   `Plumix.Material`, `Plumix.Cupertino`, `Plumix.Android`. Solution
   `src/Plumix.slnx`; roadmap — `Plumix/docs/FRAMEWORK_PLAN.md`; developer
-  reference — `Plumix/AGENTS.md`; public overview/FAQ — `Plumix/meta/`.
+  reference — `Plumix/AGENTS.md`.
 - `Plumix.Packages` — ports of popular Flutter packages (`Plumix.Provider`,
   `Plumix.Bloc`, `Plumix.Slang`), solution `src/Plumix.Packages.slnx`. Switches
   to a project reference on `../Plumix` when the sibling exists
@@ -34,8 +34,10 @@ checkout (`~/Documents/flutter/flutter`) — the Dart source of truth for ports.
 
 Planning documents (tracked by the umbrella repo):
 
-- `docs/` — strategy, product, marketing. Index with per-document status:
-  `docs/README.md`.
+- `docs/` — product concepts (`product/`) and marketing copy (`marketing/`:
+  project overview, FAQ, NuGet package descriptions). Index with per-document
+  status: `docs/README.md`. Engineering trackers stay in the code repos
+  (`Plumix/docs/`, each repo's `CHANGELOG.md`).
 - `.claude/launch.json` — dev-server presets for the browser preview
   (`landing-dev`, `landing-preview`, `landing-dist`).
 
@@ -50,6 +52,8 @@ Planning documents (tracked by the umbrella repo):
 - All Plumix NuGet packages share one version line with `Plumix.Packages`.
 - Product/marketing decisions live in `docs/`; code facts live in each repo's
   `AGENTS.md`. When they disagree, the code wins — fix the doc.
+- Landing copy, GitHub About and NuGet `Description` fields follow
+  `docs/marketing/overview.md` and `package-descriptions.md`.
 
 ## 2) Standard Commands
 
