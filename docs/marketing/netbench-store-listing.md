@@ -1,7 +1,7 @@
 # NetBench — тексты витрины App Store и Google Play
 
-Актуально на 2026-10-24 (версия 1.0.0). Тексты, которые вставляются в App Store
-Connect и Play Console при первой публикации мобильной версии. Технические ответы
+Актуально на 2026-10-25 (версия 1.0.0). Копирайт витрины App Store и Google Play. Выгружает его fastlane
+из `NetBench/fastlane/metadata` — при правке текста меняйте оба места (при расхождении верен репозиторий). Технические ответы
 (App Review notes, Data safety, рейтинг) — в `NetBench/store/README.md`.
 
 Лимиты символов указаны в скобках. Конкурентов (k6, wrk, JMeter) в ключевых словах
@@ -72,13 +72,14 @@ Use NetBench only against servers you own or are allowed to test.
 NetBench is open source and is a showcase app for Plumix, a Flutter-like UI framework
 for .NET: the whole mobile UI is written in C# with Plumix widgets.
 
-**What's new (1.0.0):** First release.
+**What's new (1.0.0):** см. `NetBench/fastlane/metadata/ios/en-US/release_notes.txt`.
 
 ## Русский (ru-RU)
 
 **App Store name (30):** NetBench – Powered by Plumix
 
-**Google Play title (30):** NetBench: нагрузочный тест HTTP
+**Google Play title (30):** NetBench: нагрузочный тест
+*(«…нагрузочный тест HTTP» — 31 символ, не влезает)*
 
 **App Store subtitle (30):** Нагрузочный тест своего API
 
@@ -86,7 +87,7 @@ for .NET: the whole mobile UI is written in C# with Plumix widgets.
 Нагрузочное тестирование своего HTTP API с телефона: RPS, задержки, ошибки.
 
 **App Store promotional text (170):**
-Укажите адрес своего API, выберите число пользователей и длительность — и смотрите,
+Укажите адрес API, выберите число пользователей и длительность — и смотрите,
 как меняются запросы в секунду, p95 задержки и доля ошибок. Отчёт — в HTML, CSV или JSON.
 
 **Keywords — App Store (100):**
@@ -122,14 +123,14 @@ NetBench — инструмент нагрузочного тестирован�
 NetBench — открытое приложение-витрина Plumix, Flutter-подобного UI-фреймворка
 для .NET: весь мобильный интерфейс написан на C# виджетами Plumix.
 
-**Что нового (1.0.0):** Первый выпуск.
+**Что нового (1.0.0):** см. `NetBench/fastlane/metadata/ios/ru/release_notes.txt`.
 
 ## Графика
 
 | Что | Где | Статус |
 |---|---|---|
 | Иконка App Store 1024×1024 | `NetBench/NetBench/NetBench.iOS/Assets.xcassets/AppIcon.appiconset` (из `scripts/generate_icons.py`) | готова |
-| Иконка Google Play 512×512 | `NetBench/store/google-play/icon-512.png` | готова |
-| Feature graphic Google Play 1024×500 | `NetBench/store/google-play/feature-graphic.png` | готова (`scripts/generate_store_graphics.py`) |
-| Скриншоты iPhone 6.9" (1320×2868) | `NetBench/store/app-store/` | снять с симулятора iPhone 17 Pro Max — `NetBench/store/README.md` |
-| Скриншоты телефона Google Play (≥1080 px) | `NetBench/store/google-play/` | снять с эмулятора Pixel_6a — `NetBench/store/README.md` |
+| Иконка Google Play 512×512 | `NetBench/fastlane/metadata/android/<язык>/images/icon.png` (`scripts/generate_icons.py`) | готова |
+| Feature graphic Google Play 1024×500 (ru/en) | `NetBench/fastlane/metadata/android/<язык>/images/featureGraphic.png` (`scripts/generate_store_graphics.py`) | готова |
+| Скриншоты iPhone 6.9" (1320×2868), ru/en | `NetBench/fastlane/screenshots/ios/<язык>/` (`fastlane screenshots`) | готовы |
+| Скриншоты телефона Google Play (1080×1920), ru/en | `NetBench/fastlane/metadata/android/<язык>/images/phoneScreenshots/` | готовы |
