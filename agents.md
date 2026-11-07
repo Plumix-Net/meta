@@ -22,8 +22,8 @@ all under `github.com/Plumix-Net` unless noted):
   Plumix on Android/iOS. Consumes Plumix from NuGet
   (`NetBench/NetBench/Directory.Packages.props`). See `NetBench/AGENTS.md`.
 - `landing` — site plumix.net. Vite + React + shadcn, prerendered
-  (`npm run build`), deployed to Beget from the `release` branch
-  (`.github/workflows/deploy-release-beget.yml`).
+  (`npm run build`), deployed to Cloudflare Pages (project `plumix-landing`)
+  from the `release` branch (`.github/workflows/deploy-release-cloudflare.yml`).
 - `Avalonia` — **upstream clone** of `github.com/AvaloniaUI/Avalonia`
   (checked out at a release branch), read-only reference. `Plumix/avalonia-src`
   is a symlink to it. Never commit or push here.
@@ -97,7 +97,7 @@ npm run dev
 
 ## 5) Security and Secrets Hygiene
 
-- Never commit real secrets (NuGet API keys, Beget FTP credentials — they
+- Never commit real secrets (NuGet API keys, Cloudflare API token — they
   belong in GitHub Actions secrets only).
 - Treat any secret-like value found in local config as sensitive; rotate if
   exposure is suspected.
