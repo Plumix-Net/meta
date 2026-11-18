@@ -10,7 +10,7 @@ Code repositories (each is its own git repo, ignored by the umbrella repo,
 all under `github.com/Plumix-Net` unless noted):
 
 - `Plumix` — the framework: Flutter-like `Widget`/`Element`/`RenderObject`
-  layer in C# on .NET 10, Avalonia as platform host. NuGet `Plumix`,
+  layer in C# on .NET 11, Avalonia as platform host. NuGet `Plumix`,
   `Plumix.Material`, `Plumix.Cupertino`, `Plumix.Android`. Solution
   `src/Plumix.slnx`; roadmap — `Plumix/docs/FRAMEWORK_PLAN.md`; developer
   reference — `Plumix/AGENTS.md`.
