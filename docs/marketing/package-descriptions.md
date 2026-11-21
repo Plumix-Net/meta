@@ -10,14 +10,14 @@ Copy-paste descriptions for NuGet, package registries, and release notes.
 **NuGet URL:** https://www.nuget.org/packages/Plumix/
 
 ### Short (NuGet tagline, ~160 chars)
-Flutter-inspired UI framework for .NET. Widget/Element/RenderObject architecture in C#, powered by Avalonia. Cross-platform: desktop, web, Android, iOS.
+Flutter-inspired UI framework for .NET. Widget/Element/RenderObject architecture in C# with Flutter's own API shapes. Cross-platform: desktop, web, Android, iOS.
 
 ### Medium (NuGet description field)
 Plumix is a Flutter-inspired UI framework for .NET that implements Flutter's Widget/Element/RenderObject architecture in C#.
 
 Build declarative, cross-platform UIs with the same primitives as Flutter — `StatelessWidget`, `StatefulWidget`, `BuildContext`, `RenderObject`, `InheritedWidget` — and target Windows, macOS, Linux, WebAssembly, Android, and iOS from a single codebase.
 
-The framework owns its own render pipeline (layout, paint, compositing, semantics) and uses Avalonia only as a platform layer for windowing, input, and drawing. Gesture recognition, navigation, scrolling, focus management, and the full widget lifecycle are all implemented inside Plumix.
+The framework owns its own render pipeline (layout, paint, compositing, semantics) and its own value types (`Offset`, `Size`, `Rect`, `FontWeight`, images, shaders): its public API names no host type. Windowing, input and drawing come from a host package — today `Plumix.Avalonia`. Gesture recognition, navigation, scrolling, focus management, and the full widget lifecycle are all implemented inside Plumix.
 
 **What's included in the core package:**
 - Widget/Element/RenderObject architecture (`StatelessWidget`, `StatefulWidget`, `State`, reconciliation)
@@ -29,6 +29,21 @@ The framework owns its own render pipeline (layout, paint, compositing, semantic
 - Text input: `EditableText`, `TextInput`, selection, IME
 - Inherited widgets: `MediaQuery`, `DefaultTextStyle`, `Directionality`, `IconTheme`
 - Animation primitives: `AnimationController`, `Ticker`
+
+---
+
+## Plumix.Avalonia
+
+**NuGet ID:** `Plumix.Avalonia`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.Avalonia/
+
+### Short
+Avalonia host for Plumix: run a Flutter-style widget app in an Avalonia window, browser canvas, iOS view or Android activity.
+
+### Medium
+Plumix.Avalonia hosts a Plumix widget tree on Avalonia. Derive your app from `PlumixApplication` (or place a `PlumixHost` control in any Avalonia window) and Plumix renders, handles input, text input, accessibility and windowing through Avalonia on Windows, macOS, Linux, WebAssembly, iOS and Android.
+
+Mixing Plumix screens with Avalonia controls? `Plumix.Hosting.AvaloniaInterop` converts colors, insets, matrices and geometry between the two.
 
 ---
 
@@ -104,17 +119,18 @@ dotnet add package Plumix.Cupertino --version X.Y.Z
 ## Installation
 
 ```bash
-# Core framework only
+# Core framework only (widgets; add a host to run them)
 dotnet add package Plumix
+dotnet add package Plumix.Avalonia
 
 # With Material Design 3
-dotnet add package Plumix
+dotnet add package Plumix.Avalonia
 dotnet add package Plumix.Material
 
 # Full stack
-dotnet add package Plumix
+dotnet add package Plumix.Avalonia
 dotnet add package Plumix.Material
 dotnet add package Plumix.Cupertino
 ```
 
-Minimum requirement: **.NET 10**
+Minimum requirement: **.NET 11**
