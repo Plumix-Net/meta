@@ -1,6 +1,6 @@
-# NetBench — тексты витрины App Store и Google Play
+# NetBench — тексты витрины App Store, Mac App Store и Google Play
 
-Актуально на 2026-10-25 (версия 1.0.0). Копирайт витрины App Store и Google Play. Выгружает его fastlane
+Актуально на 2026-11-21 (версия 1.0.1). Копирайт витрины App Store (iPhone и Mac) и Google Play. Выгружает его fastlane
 из `NetBench/fastlane/metadata` — при правке текста меняйте оба места (при расхождении верен репозиторий). Технические ответы
 (App Review notes, Data safety, рейтинг) — в `NetBench/store/README.md`.
 
@@ -124,6 +124,20 @@ NetBench — открытое приложение-витрина Plumix, Flutte
 для .NET: весь мобильный интерфейс написан на C# виджетами Plumix.
 
 **Что нового (1.0.0):** см. `NetBench/fastlane/metadata/ios/ru/release_notes.txt`.
+
+## Mac App Store
+
+Та же запись App Store Connect, что у iPhone: название, подзаголовок, категории, возраст, цена и политика
+конфиденциальности — общие (см. выше). Свои у macOS-версии — описание, промо-текст, ключевые слова и скриншоты:
+`NetBench/fastlane/metadata/macos/{en-US,ru}/`. Отличия от iPhone-текста:
+
+- без «прямо с телефона» и мобильных лимитов (на Mac лимитов нет — заявляем «высокую нагрузку с одного Mac»);
+- в описании — то, чего нет на мобиле: разгон, пауза между запросами, шаги запросов, сравнение двух сценариев бок о бок;
+- последний абзац: desktop написан на .NET и Avalonia, iPhone-версия — витрина Plumix (не «весь интерфейс на Plumix»).
+
+Скриншоты Mac (2880×1800, en/ru): «Watch RPS, p95 latency and errors live» / «RPS, p95 и ошибки в реальном времени»,
+«Percentiles, status codes and exports» / «Перцентили, коды ответов и экспорт», «Compare scenarios side by side» /
+«Сравнение сценариев бок о бок», «Scenarios with ramp-up, think time and steps» / «Сценарии с разгоном, паузами и шагами».
 
 ## Графика
 

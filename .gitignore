@@ -16,3 +16,6 @@
 
 # Binary doc assets (screens, mockups)
 /docs/assets/
+
+# Cloudflare wrangler local cache (account data)
+.wrangler/
