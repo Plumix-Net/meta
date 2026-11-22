@@ -132,7 +132,17 @@ Avalonia остаётся по умолчанию, пока нативный н�
    Cut/Copy/Share/Select all, Copy → Paste через системный буфер,
    Backspace. Аппаратные клавиши во фреймворк хост пока не отправляет:
    стрелки, Enter и Backspace обрабатывает адаптер, как
-   `handleKeyEvent` движка (стрелок вверх и вниз нет). Заодно найден баг
+   `handleKeyEvent` движка (стрелок вверх и вниз нет). Затем (тот же день)
+   — клавиатура: `AndroidKeyboardManager` по `KeyboardManager.java`
+   отдаёт каждое событие обоим ответчикам (`KeyData` с синхронизацией
+   модификаторов и Caps Lock по `metaState`, как `KeyEmbedderResponder`, и
+   `flutter/keyevent`, как `KeyChannelResponder`); необработанное идёт в
+   `handleKeyEvent` адаптера, потом обратно по дереву view;
+   `flutter/keyboard getKeyboardState` отвечает нажатыми клавишами.
+   Таблицы `KeyboardMap.java` совпадают с таблицами фреймворка, поэтому взяты
+   они. Своя обработка Backspace убрана — её делает фреймворк. Проверено в
+   эмуляторе: символы, Backspace и стрелки через фреймворк, Tab переводит
+   фокус, Back закрывает клавиатуру, потом маршрут. Заодно найден баг
    ядра: `RenderOpacity`, `RenderAnimatedOpacity`, их sliver-вариант и
    `RenderImageFilter` начинали с `_wasRepaintBoundary = true`, если
    ребёнок появлялся до первого чтения. Во Flutter конструктор читает это
