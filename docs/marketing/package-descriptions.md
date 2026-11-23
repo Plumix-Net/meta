@@ -17,7 +17,7 @@ Plumix is a Flutter-inspired UI framework for .NET that implements Flutter's Wid
 
 Build declarative, cross-platform UIs with the same primitives as Flutter — `StatelessWidget`, `StatefulWidget`, `BuildContext`, `RenderObject`, `InheritedWidget` — and target Windows, macOS, Linux, WebAssembly, Android, and iOS from a single codebase.
 
-The framework owns its own render pipeline (layout, paint, compositing, semantics) and its own value types (`Offset`, `Size`, `Rect`, `FontWeight`, images, shaders): its public API names no host type. Windowing, input and drawing come from a host package — today `Plumix.Avalonia`. Gesture recognition, navigation, scrolling, focus management, and the full widget lifecycle are all implemented inside Plumix.
+The framework owns its own render pipeline (layout, paint, compositing, semantics) and its own value types (`Offset`, `Size`, `Rect`, `FontWeight`, images, shaders): its public API names no host type. Windowing, input and drawing come from a host package — `Plumix.Avalonia` (desktop, web, iOS, Android) or the native `Plumix.Android`. Gesture recognition, navigation, scrolling, focus management, and the full widget lifecycle are all implemented inside Plumix.
 
 **What's included in the core package:**
 - Widget/Element/RenderObject architecture (`StatelessWidget`, `StatefulWidget`, `State`, reconciliation)
@@ -44,6 +44,41 @@ Avalonia host for Plumix: run a Flutter-style widget app in an Avalonia window, 
 Plumix.Avalonia hosts a Plumix widget tree on Avalonia. Derive your app from `PlumixApplication` (or place a `PlumixHost` control in any Avalonia window) and Plumix renders, handles input, text input, accessibility and windowing through Avalonia on Windows, macOS, Linux, WebAssembly, iOS and Android.
 
 Mixing Plumix screens with Avalonia controls? `Plumix.Hosting.AvaloniaInterop` converts colors, insets, matrices and geometry between the two.
+
+---
+
+## Plumix.Android
+
+**NuGet ID:** `Plumix.Android`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.Android/
+
+### Short
+Native Android host for Plumix, without Avalonia: renders through Impeller and ports the Flutter engine's Android embedding.
+
+### Medium
+Plumix.Android runs a Plumix widget app on Android without Avalonia. Derive your Activity from `PlumixActivity` and return your app from `CreateApp()`: Plumix renders through Impeller (the `Plumix.Impeller` backend) on its own raster thread, and the host ports the Flutter engine's Android embedding — touch, mouse and stylus input, the keyboard, IME and autofill, accessibility, platform channels, predictive back, state restoration and system fonts.
+
+## Plumix.Impeller
+
+**NuGet ID:** `Plumix.Impeller`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.Impeller/
+
+### Short
+Impeller rendering backend for Plumix's native hosts: display lists, text, images and shaders on Flutter's renderer.
+
+### Medium
+Plumix.Impeller draws a Plumix app with Impeller, the renderer of the Flutter engine, through the NImpeller bindings (`Plumix.NImpeller`). It plays the framework's display lists and layers, shapes text with HarfBuzz into Impeller glyph runs, decodes images and compiles fragment programs. Native host packages such as `Plumix.Android` reference it; apps do not use it directly.
+
+## Plumix.Avalonia.Android
+
+**NuGet ID:** `Plumix.Avalonia.Android`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.Avalonia.Android/
+
+### Short
+Android Activity for a Plumix app hosted on Avalonia: lifecycle, state restoration and predictive back.
+
+### Medium
+Plumix.Avalonia.Android connects an Avalonia Android head to Plumix: `PlumixMainActivity` passes the Activity lifecycle, state restoration, predictive back, system settings and accessibility features to the framework. Before 1.0.0-preview.6 this package was named `Plumix.Android`, which is now the native host.
 
 ---
 
