@@ -91,19 +91,6 @@ Impeller rendering backend for Plumix's native hosts: display lists, text, image
 ### Medium
 Plumix.Impeller draws a Plumix app with Impeller, the renderer of the Flutter engine, through the NImpeller bindings (`Plumix.NImpeller`). It plays the framework's display lists and layers, shapes text with HarfBuzz into Impeller glyph runs, decodes images and compiles fragment programs. Native host packages such as `Plumix.Android` and `Plumix.iOS` reference it; apps do not use it directly.
 
-## Plumix.Avalonia.Android
-
-**NuGet ID:** `Plumix.Avalonia.Android`
-**NuGet URL:** https://www.nuget.org/packages/Plumix.Avalonia.Android/
-
-### Short
-Android Activity for a Plumix app hosted on Avalonia: lifecycle, state restoration and predictive back.
-
-### Medium
-Plumix.Avalonia.Android connects an Avalonia Android head to Plumix: `PlumixMainActivity` passes the Activity lifecycle, state restoration, predictive back, system settings and accessibility features to the framework. Before 1.0.0-preview.6 this package was named `Plumix.Android`, which is now the native host.
-
----
-
 ## Plumix.Material
 
 **NuGet ID:** `Plumix.Material`

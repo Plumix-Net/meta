@@ -471,6 +471,12 @@ Avalonia остаётся по умолчанию, пока нативный н�
 Решено 2026-11-22: переименовать до `1.0`, одновременно с переходом NetBench
 (этап 4). Бэкенд — `Plumix.Impeller` (общий для Android и iOS).
 
+2026-11-23: `Plumix.Avalonia.Android` удалён из репозитория вместе с
+`AndroidActivityDelegate` и Avalonia-семплом для Android — потребителей не
+осталось (NetBench, шаблон и `Plumix.Packages` на нативных хостах). Последняя
+версия на nuget.org — `1.0.0-preview.9`; с `1.0.0-preview.10` пакет не
+выпускается. Android — только нативный `Plumix.Android`.
+
 ## Риски
 
 - **NImpeller.** Один основной автор, форк Flutter с патчами, один релиз в
