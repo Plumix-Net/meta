@@ -477,6 +477,11 @@ Avalonia остаётся по умолчанию, пока нативный н�
 версия на nuget.org — `1.0.0-preview.9`; с `1.0.0-preview.10` пакет не
 выпускается. Android — только нативный `Plumix.Android`.
 
+2026-11-23: семплы приведены к одному набору: Avalonia-голова iOS и
+прототип `NetBench.Impeller.Android` удалены, нативные головы переименованы в
+`Plumix.Sample.Android` и `Plumix.Sample.iOS` (были
+`Plumix.Sample.Impeller.*`), id приложения — `com.plumix.sample`.
+
 ## Риски
 
 - **NImpeller.** Один основной автор, форк Flutter с патчами, один релиз в
