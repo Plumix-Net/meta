@@ -541,7 +541,7 @@ Painter-ы `Plumix.Material` и `Plumix.Cupertino` вызывают внутре
   | Нет внешних текстур (`GL_TEXTURE_EXTERNAL_OES`, `AHardwareBuffer`) | `TextureFlowLayer`, платформенные view, видео, камера | требует патча; без него эти виджеты недоступны |
   | Нет nine-patch | `drawImageNine` | своим кодом — сделано 2026-11-22: девять `drawImageRect` |
   | — (возможности есть) | лупа, пунктирные и волнистые декорации, `PerformanceOverlayLayer`; сделано 2026-11-22: маска затухания текста, `invertColors`, `Paint.imageFilter` | своим кодом: backdrop с матричным фильтром, пути; маска — `saveLayer` и градиент в `modulate`, инверсия — цветовая матрица, фильтр — `ImpellerPaintSetImageFilter` |
-  | — (не C API) | анимированные картинки | своим кодом в хосте: декодер платформы (`ImageDecoder`) по кадрам |
+  | — (не C API) | анимированные картинки; сделано 2026-11-23 (`native-host.md`) | своим кодом в хосте: `AImageDecoder` по кадрам для GIF/WebP, свой кодек APNG |
 
   Блокирующих пробелов для сценариев PRD нет: страницы `Sample` и экраны
   NetBench работают. Без патча недоступны только внешние текстуры. Vulkan не
