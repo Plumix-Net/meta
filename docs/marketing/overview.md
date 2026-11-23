@@ -1,6 +1,8 @@
 # Plumix — Project Overview
 
-> Flutter-inspired UI framework for .NET. Build declarative, widget-based applications in C# using the same architecture as Flutter — Widget, Element, RenderObject — powered by Avalonia and .NET 10.
+> Flutter-inspired UI framework for .NET. Build declarative, widget-based applications in C# using the same architecture as Flutter — Widget, Element, RenderObject — on .NET 11, with native Impeller hosts on Android and iOS and Avalonia on desktop and in the browser.
+
+_Updated 2026-11-23._
 
 **Website:** https://plumix.net/
 **GitHub:** https://github.com/Plumix-Net/Plumix
@@ -17,7 +19,7 @@
 
 ## Short description (tweet / GitHub About / NuGet tagline)
 
-Plumix is a Flutter-inspired UI framework for .NET. Write declarative, widget-based UIs in C# with Flutter's Widget/Element/RenderObject architecture, powered by Avalonia.
+Plumix is a Flutter-inspired UI framework for .NET. Write declarative, widget-based UIs in C# with Flutter's Widget/Element/RenderObject architecture — on Android, iOS, desktop and the web.
 
 ---
 
@@ -25,7 +27,7 @@ Plumix is a Flutter-inspired UI framework for .NET. Write declarative, widget-ba
 
 Plumix brings Flutter's proven UI architecture to the .NET ecosystem. Instead of adapting to a new mental model, Flutter developers can write C# using the same primitives they already know — `StatelessWidget`, `StatefulWidget`, `BuildContext`, `RenderObject` — and ship to desktop, web, Android, and iOS from a single codebase.
 
-The framework is built on top of Avalonia for platform infrastructure (windowing, input, drawing backend) while keeping layout, paint, and widget lifecycle entirely framework-owned — the same architectural split Flutter uses between the framework and the engine.
+Layout, paint and widget lifecycle are entirely framework-owned; a thin host supplies the surface, input and platform services — the same architectural split Flutter uses between the framework and the engine. On Android and iOS that host is Plumix's own, rendering through Impeller like Flutter's engine; on desktop and in the browser it is Avalonia.
 
 ---
 
@@ -37,7 +39,7 @@ Plumix is a faithful port of Flutter's architecture to C# and .NET. The goal is 
 
 This means Flutter developers can bring their knowledge directly to .NET. A `StatefulWidget` in Plumix works the same way as in Flutter. `setState` triggers the same rebuild cycle. `InheritedWidget` propagates data the same way. The goal is that porting a Flutter widget to Plumix is a mechanical translation, not a reimagination.
 
-Under the hood, Plumix uses Avalonia purely as platform infrastructure — for window hosting, native input events, and the drawing backend. Everything above the canvas is framework-owned: layout passes, paint phases, compositing layers, semantics, focus management, gesture recognition.
+Under the hood, a host only supplies the platform: on Android and iOS, Plumix's native hosts are ports of the Flutter engine's embeddings — text input, keyboard, accessibility, platform channels, state restoration — that render through Impeller; on desktop and in the browser, Avalonia provides the window, input and Skia drawing backend. Everything above the canvas is framework-owned: layout passes, paint phases, compositing layers, semantics, focus management, gesture recognition.
 
 ---
 
@@ -45,8 +47,9 @@ Under the hood, Plumix uses Avalonia purely as platform infrastructure — for w
 
 - **Flutter developers join .NET without a new mental model.** Same widget architecture, same lifecycle, same patterns — just C# instead of Dart.
 - **Mechanical Dart → C# porting.** Plumix's fidelity goal means a Flutter widget can be translated line-by-line into C#. No paradigm shifts.
-- **Cross-platform from day one.** Desktop (Windows, macOS, Linux), Browser (WebAssembly), Android, iOS — all from one codebase via Avalonia's platform layer.
-- **.NET 10 and modern C#.** Nullable reference types, records, collection expressions, top-level programs. No legacy baggage.
+- **Cross-platform from day one.** Android, iOS, desktop (Windows, macOS, Linux) and the browser (WebAssembly) — one widget tree, one `dotnet new plumix-app`.
+- **Native mobile hosts.** Android and iOS render through Impeller, Flutter's own renderer, with no Avalonia or web view in between.
+- **.NET 11 and modern C#.** Nullable reference types, records, collection expressions, top-level programs. No legacy baggage.
 - **Material Design 3 out of the box.** Full theming system, component library, adaptive widgets.
 
 ---
@@ -86,7 +89,7 @@ Under the hood, Plumix uses Avalonia purely as platform infrastructure — for w
 
 ### Accessibility & semantics
 - Semantics annotations on all framework widgets
-- Avalonia accessibility bridge integration
+- TalkBack and VoiceOver through the native hosts' ports of the engine's accessibility bridges; Avalonia automation peers on desktop
 
 ### Material Design 3 library
 - **Structure:** `Scaffold`, `AppBar`, `Drawer`, `BottomNavigationBar`, `SafeArea`
@@ -97,18 +100,15 @@ Under the hood, Plumix uses Avalonia purely as platform infrastructure — for w
 - **Typography & icons:** M3 text styles, icon support
 
 ### Cupertino library
-- Adaptive `CupertinoCheckbox`, `CupertinoRadio`
-- Growing alongside Material coverage
+- Port of Flutter's Cupertino library in progress: `CupertinoApp`, navigation and tab bars, pickers, text fields, sheets, context menus, iOS-style routes
 
 ### Platform targets
-| Platform | Status |
-|----------|--------|
-| Windows (Desktop) | ✅ Supported |
-| macOS (Desktop) | ✅ Supported |
-| Linux (Desktop) | ✅ Supported |
-| Browser (WASM) | ✅ Supported |
-| Android | ✅ Supported |
-| iOS | ✅ Supported |
+| Platform | Host | Status |
+|----------|------|--------|
+| Android 7.0+ | `Plumix.Android` — native, Impeller | ✅ Supported |
+| iOS 15+ | `Plumix.iOS` — native, Impeller on Metal | ✅ Supported |
+| Windows, macOS, Linux | `Plumix.Avalonia` — Avalonia, Skia | ✅ Supported |
+| Browser (WASM) | `Plumix.Avalonia` — Avalonia.Browser | ✅ Supported |
 
 ---
 
@@ -119,20 +119,23 @@ Under the hood, Plumix uses Avalonia purely as platform infrastructure — for w
 | [`Plumix`](https://www.nuget.org/packages/Plumix/) | Core framework — Widget/Element/RenderObject architecture, layout, gestures, navigation, scrolling |
 | [`Plumix.Material`](https://www.nuget.org/packages/Plumix.Material/) | Material Design 3 component library and theming |
 | [`Plumix.Cupertino`](https://www.nuget.org/packages/Plumix.Cupertino/) | iOS/macOS Cupertino-style adaptive components |
+| [`Plumix.Android`](https://www.nuget.org/packages/Plumix.Android/) | Native Android host on Impeller |
+| [`Plumix.iOS`](https://www.nuget.org/packages/Plumix.iOS/) | Native iOS host on Impeller and Metal |
+| [`Plumix.Avalonia`](https://www.nuget.org/packages/Plumix.Avalonia/) | Avalonia host for desktop and browser |
+| [`Plumix.Templates`](https://www.nuget.org/packages/Plumix.Templates/) | `dotnet new plumix-app` project template |
 
-Install:
+Start a new app:
 ```
-dotnet add package Plumix
-dotnet add package Plumix.Material
-dotnet add package Plumix.Cupertino
+dotnet new install Plumix.Templates
+dotnet new plumix-app -n HelloPlumix
 ```
 
 ---
 
 ## Current status
 
-**Version:** `0.1.0-alpha.3`
-**Phase:** M4 — Material library refinement and advanced component coverage
+**Version:** `1.0.0-preview.8` (`Plumix.Templates` ships with the next preview)
+**Phase:** M5 — cross-host parity and stability (native Android and iOS hosts), M6 — Cupertino port
 
 | Area | Status |
 |------|--------|
@@ -143,17 +146,18 @@ dotnet add package Plumix.Cupertino
 | Scrolling & slivers | ✅ Complete |
 | Focus & accessibility | ✅ Complete |
 | Text input & editing | ✅ Complete |
-| Material Design 3 library | 🔄 In progress (M4) |
-| Cupertino library | ⏳ Planned |
-| Cross-host parity (mobile/browser) | ⏳ Planned (M5) |
+| Material Design 3 library | ✅ Complete (M4) |
+| Cupertino library | 🔄 In progress (M6) |
+| Native Android and iOS hosts | ✅ Shipped (`Plumix.Android`, `Plumix.iOS`) |
+| Cross-host parity and stability | 🔄 In progress (M5) |
 
 ---
 
 ## Tech stack
 
-- **Language:** C# 13, .NET 10
-- **Platform layer:** [Avalonia](https://avaloniaui.net/) (windowing, input, drawing backend)
-- **Target frameworks:** `net10.0` for all packages
+- **Language:** C#, .NET 11
+- **Hosts:** Plumix's native Android and iOS hosts on [Impeller](https://docs.flutter.dev/perf/impeller) (through NImpeller bindings); [Avalonia](https://avaloniaui.net/) on desktop and in the browser
+- **Target frameworks:** `net11.0`; the hosts also `net11.0-android` and `net11.0-ios`
 - **Reference implementation:** [Flutter](https://flutter.dev/) (Dart source used as porting source of truth)
 - **Packages:** Published to NuGet
 
@@ -181,8 +185,9 @@ Plumix is an open source project. Contributions, bug reports, and discussion are
 ## Code example
 
 ```csharp
-using Plumix.Widgets;
 using Plumix.Material;
+using Plumix.Rendering;
+using Plumix.Widgets;
 
 public sealed class CounterApp : StatefulWidget
 {
@@ -229,6 +234,6 @@ sealed class _CounterState : State<CounterApp>
 | Dart → C# porting | ✅ Mechanical | ❌ | ❌ | ❌ |
 | Owns render pipeline | ✅ | Partial | Partial | Partial |
 | Material Design 3 | ✅ | ✅ | Community | ✅ |
-| .NET 10 | ✅ | ✅ | ✅ | ✅ |
+| .NET 11 | ✅ | ✅ | ✅ | ✅ |
 | WASM | ✅ | ✅ | ✅ | ✅ |
 | Mobile | ✅ | ✅ | ✅ | ✅ |

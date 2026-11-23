@@ -2,6 +2,8 @@
 
 Frequently asked questions for articles, interviews, and website Q&A sections.
 
+_Updated 2026-11-23._
+
 ---
 
 **Q: What is Plumix?**
@@ -12,7 +14,7 @@ Plumix is a UI framework for .NET that brings Flutter's architecture to C#. It i
 
 **Q: How is Plumix different from MAUI, Avalonia, or Uno Platform?**
 
-Those frameworks have their own UI models. Plumix specifically targets Flutter's architecture — its goal is that a Flutter widget can be mechanically ported to C# without redesigning it. Avalonia is used under the hood as the platform layer (windowing, input, GPU drawing), but layout, paint, gestures, navigation, and widget lifecycle are all implemented inside Plumix itself, not delegated to Avalonia controls.
+Those frameworks have their own UI models. Plumix specifically targets Flutter's architecture — its goal is that a Flutter widget can be mechanically ported to C# without redesigning it. On Android and iOS Plumix runs on its own hosts, without Avalonia; on desktop and in the browser Avalonia is the platform layer (windowing, input, GPU drawing). Either way, layout, paint, gestures, navigation, and widget lifecycle are all implemented inside Plumix itself, not delegated to another toolkit's controls.
 
 ---
 
@@ -22,27 +24,27 @@ No, but it helps. If you know Flutter, Plumix will feel immediately familiar —
 
 ---
 
-**Q: Why build on top of Avalonia instead of writing a full engine?**
+**Q: Does Plumix have its own engine?**
 
-Writing a rendering engine from scratch would take years. Avalonia already solves the hard platform problems: native windowing, platform input events, GPU-accelerated drawing (Skia/Direct3D/Metal/Vulkan), and cross-platform app lifecycle. Plumix takes exactly those pieces and builds the Flutter-style framework layer on top. This is the same split Flutter has between its Dart framework layer and the Flutter engine written in C++.
+On mobile, yes — in the same sense Flutter does. `Plumix.Android` and `Plumix.iOS` are ports of the Flutter engine's Android and iOS embeddings (text input, keyboard, accessibility, platform channels, state restoration) that render through Impeller, Flutter's own renderer, via the NImpeller bindings. On desktop and in the browser Plumix runs on Avalonia, which already solves native windowing, input and GPU drawing there. In both cases the split matches Flutter's: the framework layer is Plumix's, the host only supplies the platform.
 
 ---
 
 **Q: What platforms does Plumix support?**
 
-Windows, macOS, Linux (via Avalonia desktop), WebAssembly (browser), Android, and iOS. All six platforms are targeted from a single C# codebase.
+Android 7.0+ and iOS 15+ (native hosts on Impeller), Windows, macOS and Linux (Avalonia desktop) and WebAssembly (Avalonia browser). `dotnet new plumix-app` creates one shared widget project with desktop, Android and iOS projects.
 
 ---
 
 **Q: What is the current status?**
 
-Plumix is in alpha (`0.1.0-alpha.3`). The core framework is complete — widget reconciliation, render pipeline, gesture system, navigation, and scrolling all work. The Material Design 3 component library is actively being built out (currently in M4 phase). The Cupertino library has foundational adaptive widgets with more planned.
+Plumix 1.0 is in preview (`1.0.0-preview.8`). The core framework and the Material library are strict ports of Flutter 3.47 — widget reconciliation, render pipeline, gestures, navigation, scrolling, text input, accessibility. The native Android and iOS hosts have shipped; the Cupertino port and cross-host stability are in progress before a 1.0 release candidate.
 
 ---
 
 **Q: Is Plumix production-ready?**
 
-Not yet. Alpha versions are suitable for exploration, prototyping, and contributing. Expect API changes before a stable release.
+Not yet. Preview versions are suitable for exploration, prototyping, and contributing; the NetBench demo app is built on them. Expect API changes before the 1.0 API freeze.
 
 ---
 
@@ -66,7 +68,7 @@ https://github.com/Plumix-Net/Plumix.Packages — community and supplemental pac
 
 **Q: What .NET version is required?**
 
-.NET 10. Plumix targets `net10.0` across all packages.
+.NET 11. Plumix targets `net11.0`; the mobile hosts also `net11.0-android` and `net11.0-ios`.
 
 ---
 

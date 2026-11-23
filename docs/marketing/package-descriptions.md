@@ -69,6 +69,17 @@ Native iOS host for Plumix, without Avalonia: renders through Impeller on Metal 
 ### Medium
 Plumix.iOS runs a Plumix widget app on iOS without Avalonia. Derive your view controller from `PlumixViewController` and return your app from `CreateApp()`: Plumix renders through Impeller on Metal (the `Plumix.Impeller` backend) on its own raster thread, and the host ports the Flutter engine's iOS embedding — touch input, text input and the keyboard, hardware keys, VoiceOver, the platform plugin (status bar, haptics, clipboard, share), Dynamic Type and system fonts.
 
+## Plumix.Templates
+
+**NuGet ID:** `Plumix.Templates`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.Templates/
+
+### Short
+dotnet new templates for Plumix: plumix-app creates shared Flutter-style widgets with desktop, Android and iOS projects.
+
+### Medium
+Plumix.Templates installs the `plumix-app` template: `dotnet new plumix-app -n MyApp` creates a shared project for the app's widgets and a thin host project per platform — desktop on Avalonia (`PlumixApplication`), Android on the native host (`PlumixActivity`) and iOS on the native host (`PlumixViewController`). `--android false`, `--ios false` and `--desktop false` leave a platform out; `--application-id` sets the Android application id and iOS bundle id. The template pins the Plumix version it was released with.
+
 ## Plumix.Impeller
 
 **NuGet ID:** `Plumix.Impeller`
@@ -165,6 +176,10 @@ dotnet add package Plumix.Cupertino --version X.Y.Z
 ## Installation
 
 ```bash
+# New app from the template (desktop, Android and iOS projects)
+dotnet new install Plumix.Templates
+dotnet new plumix-app -n MyApp
+
 # Core framework only (widgets; add a host to run them)
 dotnet add package Plumix
 dotnet add package Plumix.Avalonia
