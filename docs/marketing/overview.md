@@ -91,16 +91,13 @@ Under the hood, a host only supplies the platform: on Android and iOS, Plumix's 
 - Semantics annotations on all framework widgets
 - TalkBack and VoiceOver through the native hosts' ports of the engine's accessibility bridges; Avalonia automation peers on desktop
 
-### Material Design 3 library
-- **Structure:** `Scaffold`, `AppBar`, `Drawer`, `BottomNavigationBar`, `SafeArea`
-- **Buttons:** `ElevatedButton`, `FilledButton`, `OutlinedButton`, `TextButton`, `IconButton`
-- **Controls:** `Checkbox`, `Switch`, `Radio`, `FloatingActionButton` (4 variants + extended)
-- **Content:** `Card` (elevated/filled/outlined), `ListTile` (1/2/3-line), `Tooltip`
-- **Theming:** `ThemeData`, `ColorScheme`, per-component theme data classes
-- **Typography & icons:** M3 text styles, icon support
+### Material library
+- Every widget family of Flutter's Material library: structure (`Scaffold`, `AppBar`, `Drawer`, navigation bars and rails), buttons, inputs and selection, pickers, dialogs and sheets, menus, chips, `DataTable`, progress and feedback
+- Material 2 and Material 3 theming: `ThemeData`, `ColorScheme`, per-component themes
+- The 8,825-icon `Icons` catalog and localizations for 119 locales
 
 ### Cupertino library
-- Port of Flutter's Cupertino library in progress: `CupertinoApp`, navigation and tab bars, pickers, text fields, sheets, context menus, iOS-style routes
+- Strict port of Flutter's Cupertino library (M6, closed 2026-10-27): `CupertinoApp`, navigation and tab bars, pickers, text fields, sheets, context menus, iOS-style routes; Material `.Adaptive` factories compose the Cupertino widgets as Flutter does
 
 ### Platform targets
 | Platform | Host | Status |
@@ -134,8 +131,8 @@ dotnet new plumix-app -n HelloPlumix
 
 ## Current status
 
-**Version:** `1.0.0-preview.8` (`Plumix.Templates` ships with the next preview)
-**Phase:** M5 — cross-host parity and stability (native Android and iOS hosts), M6 — Cupertino port
+**Version:** `1.0.0-preview.9` (with `Plumix.Templates`)
+**Phase:** M1–M6 done; native Android and iOS hosts shipped (`1.0.0-preview.6`–`.9`); next — `v1.0.0-rc.1`, the API freeze
 
 | Area | Status |
 |------|--------|
@@ -147,9 +144,11 @@ dotnet new plumix-app -n HelloPlumix
 | Focus & accessibility | ✅ Complete |
 | Text input & editing | ✅ Complete |
 | Material Design 3 library | ✅ Complete (M4) |
-| Cupertino library | 🔄 In progress (M6) |
+| Cupertino library | ✅ Complete (M6) |
 | Native Android and iOS hosts | ✅ Shipped (`Plumix.Android`, `Plumix.iOS`) |
-| Cross-host parity and stability | 🔄 In progress (M5) |
+| Cross-host parity and stability | ✅ Complete (M5) |
+| Project template (`dotnet new plumix-app`) | ✅ Shipped (`Plumix.Templates`) |
+| v1.0 release candidate (API freeze) | 📋 Planned |
 
 ---
 

@@ -38,13 +38,13 @@ Android 7.0+ and iOS 15+ (native hosts on Impeller), Windows, macOS and Linux (A
 
 **Q: What is the current status?**
 
-Plumix 1.0 is in preview (`1.0.0-preview.8`). The core framework and the Material library are strict ports of Flutter 3.47 — widget reconciliation, render pipeline, gestures, navigation, scrolling, text input, accessibility. The native Android and iOS hosts have shipped; the Cupertino port and cross-host stability are in progress before a 1.0 release candidate.
+Plumix 1.0 is in preview (`1.0.0-preview.9`). The core framework and the Material and Cupertino libraries are strict ports of Flutter 3.47 — widget reconciliation, render pipeline, gestures, navigation, scrolling, text input, accessibility. The native Android and iOS hosts and the `dotnet new plumix-app` template have shipped; the next step is a 1.0 release candidate that freezes the API.
 
 ---
 
 **Q: Is Plumix production-ready?**
 
-Not yet. Preview versions are suitable for exploration, prototyping, and contributing; the NetBench demo app is built on them. Expect API changes before the 1.0 API freeze.
+Not yet. Preview versions are suitable for exploration, prototyping, and contributing; the NetBench demo app is built on them and is live on the App Store. Expect API changes before the 1.0 API freeze.
 
 ---
 
