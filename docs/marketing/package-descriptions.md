@@ -58,6 +58,17 @@ Native Android host for Plumix, without Avalonia: renders through Impeller and p
 ### Medium
 Plumix.Android runs a Plumix widget app on Android without Avalonia. Derive your Activity from `PlumixActivity` and return your app from `CreateApp()`: Plumix renders through Impeller (the `Plumix.Impeller` backend) on its own raster thread, and the host ports the Flutter engine's Android embedding — touch, mouse and stylus input, the keyboard, IME and autofill, accessibility, platform channels, predictive back, state restoration and system fonts.
 
+## Plumix.iOS
+
+**NuGet ID:** `Plumix.iOS`
+**NuGet URL:** https://www.nuget.org/packages/Plumix.iOS/
+
+### Short
+Native iOS host for Plumix, without Avalonia: renders through Impeller on Metal and ports the Flutter engine's iOS embedding.
+
+### Medium
+Plumix.iOS runs a Plumix widget app on iOS without Avalonia. Derive your view controller from `PlumixViewController` and return your app from `CreateApp()`: Plumix renders through Impeller on Metal (the `Plumix.Impeller` backend) on its own raster thread, and the host ports the Flutter engine's iOS embedding — touch input, text input and the keyboard, hardware keys, VoiceOver, the platform plugin (status bar, haptics, clipboard, share), Dynamic Type and system fonts.
+
 ## Plumix.Impeller
 
 **NuGet ID:** `Plumix.Impeller`
@@ -67,7 +78,7 @@ Plumix.Android runs a Plumix widget app on Android without Avalonia. Derive your
 Impeller rendering backend for Plumix's native hosts: display lists, text, images and shaders on Flutter's renderer.
 
 ### Medium
-Plumix.Impeller draws a Plumix app with Impeller, the renderer of the Flutter engine, through the NImpeller bindings (`Plumix.NImpeller`). It plays the framework's display lists and layers, shapes text with HarfBuzz into Impeller glyph runs, decodes images and compiles fragment programs. Native host packages such as `Plumix.Android` reference it; apps do not use it directly.
+Plumix.Impeller draws a Plumix app with Impeller, the renderer of the Flutter engine, through the NImpeller bindings (`Plumix.NImpeller`). It plays the framework's display lists and layers, shapes text with HarfBuzz into Impeller glyph runs, decodes images and compiles fragment programs. Native host packages such as `Plumix.Android` and `Plumix.iOS` reference it; apps do not use it directly.
 
 ## Plumix.Avalonia.Android
 
