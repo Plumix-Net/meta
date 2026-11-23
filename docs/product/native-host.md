@@ -196,6 +196,18 @@ Avalonia остаётся по умолчанию, пока нативный н�
    `Scene.toImage` и `RepaintBoundary.toImage` работают (страница
    `/scene-compositing` в эмуляторе: снимок 320×192 совпадает с
    оригиналом). Осталось: лупа, анимированные картинки.
+
+   Лупа (2026-11-23): `ImpellerLayerPainter` не знал Plumix-слой
+   `MagnifierFlowLayer` и выбрасывал его с поддеревом, поэтому линз не было
+   вовсе. Вместо эмуляции этого слоя ядро теперь при бэкенде с
+   backdrop-фильтрами (`IRenderBackend.SupportsBackdropFilters`, у Impeller
+   — да) строит `RawMagnifier` как Dart: `ClipPath.shape` → `Opacity` →
+   `_RenderMagnification` (`BackdropFilterLayer` с `ImageFilter.matrix`,
+   `FilterQuality.high`), стиль — младшим соседом через `_NegativeClip`.
+   Хост на Avalonia остаётся на своём слое. `RawMagnifier` стал
+   `StatelessWidget`, как в Dart. Проверено в эмуляторе: обе линзы
+   `/magnifier` (×1.8 с рамкой и ×1.25 Material) и лупа текстового поля при
+   протяжке выделения. Осталось: анимированные картинки.
 4. **NetBench на нативном хосте.** Голова Android переходит на новый пакет;
    e2e на Maestro и скриншоты сторов — без изменений сценариев. Это и есть
    приёмка этапов 2–3.
